@@ -39,7 +39,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-   "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -62,5 +62,5 @@
   "devDependencies": {
     "@types/react-helmet": "^6.1.1"
   },
-  "homepage": "https://github.com/kalaivanan241/my-app"
+  "homepage": "https://kalaivanan241.github.com/my-app"
 }
