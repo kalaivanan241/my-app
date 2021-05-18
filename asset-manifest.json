@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/kalaivanan241/my-app/static/css/main.9d5b29c0.chunk.css",
+    "main.js": "/kalaivanan241/my-app/static/js/main.bfe22119.chunk.js",
+    "main.js.map": "/kalaivanan241/my-app/static/js/main.bfe22119.chunk.js.map",
+    "runtime-main.js": "/kalaivanan241/my-app/static/js/runtime-main.2a974356.js",
+    "runtime-main.js.map": "/kalaivanan241/my-app/static/js/runtime-main.2a974356.js.map",
+    "static/js/2.fe7b90b7.chunk.js": "/kalaivanan241/my-app/static/js/2.fe7b90b7.chunk.js",
+    "static/js/2.fe7b90b7.chunk.js.map": "/kalaivanan241/my-app/static/js/2.fe7b90b7.chunk.js.map",
+    "static/js/3.4cc6cfff.chunk.js": "/kalaivanan241/my-app/static/js/3.4cc6cfff.chunk.js",
+    "static/js/3.4cc6cfff.chunk.js.map": "/kalaivanan241/my-app/static/js/3.4cc6cfff.chunk.js.map",
+    "static/js/4.49816750.chunk.js": "/kalaivanan241/my-app/static/js/4.49816750.chunk.js",
+    "static/js/4.49816750.chunk.js.map": "/kalaivanan241/my-app/static/js/4.49816750.chunk.js.map",
+    "static/js/5.cd88c994.chunk.js": "/kalaivanan241/my-app/static/js/5.cd88c994.chunk.js",
+    "static/js/5.cd88c994.chunk.js.map": "/kalaivanan241/my-app/static/js/5.cd88c994.chunk.js.map",
+    "index.html": "/kalaivanan241/my-app/index.html",
+    "service-worker.js": "/kalaivanan241/my-app/service-worker.js",
+    "service-worker.js.map": "/kalaivanan241/my-app/service-worker.js.map",
+    "static/css/main.9d5b29c0.chunk.css.map": "/kalaivanan241/my-app/static/css/main.9d5b29c0.chunk.css.map",
+    "static/js/2.fe7b90b7.chunk.js.LICENSE.txt": "/kalaivanan241/my-app/static/js/2.fe7b90b7.chunk.js.LICENSE.txt",
+    "static/js/3.4cc6cfff.chunk.js.LICENSE.txt": "/kalaivanan241/my-app/static/js/3.4cc6cfff.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2a974356.js",
+    "static/js/3.4cc6cfff.chunk.js",
+    "static/css/main.9d5b29c0.chunk.css",
+    "static/js/main.bfe22119.chunk.js"
+  ]
+}
