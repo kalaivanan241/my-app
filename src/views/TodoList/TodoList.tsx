@@ -19,6 +19,7 @@ import Header from "../../components/Header";
 import classnames from "classnames";
 
 import DeleteIcon from "@material-ui/icons/Delete";
+import processNotification from "../../utils/handleNotifications";
 
 export interface TodoListProps {}
 
@@ -62,6 +63,7 @@ const TodoList: React.FC<TodoListProps> = () => {
       ...preValue,
       { id: Date.now().toString(), todo: todo, isDone: false },
     ]);
+    processNotification("Task added", { body: todo });
     setTodo("");
   };
 

@@ -88,7 +88,9 @@ self.addEventListener("notificationclick", function (e) {
   if (action === "close") {
     notification.close();
   } else {
-    clients.openWindow("http://www.example.com");
+    this.clients.openWindow(
+      "https://developers.google.com/web/ilt/pwa/lab-integrating-web-push"
+    );
     notification.close();
   }
 });
