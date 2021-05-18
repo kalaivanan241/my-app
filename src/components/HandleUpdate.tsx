@@ -14,9 +14,7 @@ const HandleUpdate: React.FC = () => {
   const [showDialog, setShowDialog] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("update available", updateAvailable);
     if (updateAvailable) {
-      console.log("update available2", updateAvailable);
       setShowDialog(true);
     }
   }, [updateAvailable]);

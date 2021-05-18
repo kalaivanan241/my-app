@@ -8,7 +8,6 @@ const useServiceWorker = ({ timeout = 1000 }) => {
   React.useEffect(() => {
     const interval: number = window.setInterval(() => {
       if (registration) {
-        console.log("registration available");
         registration.update();
       }
     }, timeout);
@@ -19,7 +18,6 @@ const useServiceWorker = ({ timeout = 1000 }) => {
     setRegistration(registration);
   };
   const updated = () => {
-    console.log("update available");
     setUpdateAvailable(true);
   };
 

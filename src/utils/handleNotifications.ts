@@ -1,8 +1,6 @@
 const processNotification = (title: string, options: NotificationOptions) => {
   if (Notification.permission === "granted") {
-    console.log("before callback");
     navigator.serviceWorker.getRegistration().then(function (reg) {
-      console.log("handle notification");
       reg?.showNotification(title, options);
     });
   } else if (Notification.permission === "denied") {
