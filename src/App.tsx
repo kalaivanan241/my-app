@@ -1,9 +1,12 @@
 import { Button, LinearProgress } from "@material-ui/core";
 import React, { Suspense, useEffect } from "react";
 import "./App.css";
+import HandleUpdate from "./components/HandleUpdate";
+import ServiceWorkerProvider from "./components/ServiceWorkerProvider/ServiceWorkerProvider";
 import processNotification from "./utils/handleNotifications";
+import TodoList from "./views/TodoList/TodoList";
 
-const TodoListComponent = React.lazy(() => import("./views/TodoList/TodoList"));
+// const TodoListComponent = React.lazy(() => import("./views/TodoList/TodoList"));
 
 const App: React.FC = () => {
   const buttonClick = () => {
@@ -13,10 +16,11 @@ const App: React.FC = () => {
   };
   return (
     <div className="App">
-      <Suspense fallback={<LinearProgress />}>
-        <TodoListComponent />
-        <Button onClick={buttonClick}>Handle Notification</Button>
-      </Suspense>
+      <ServiceWorkerProvider>
+        <TodoList />
+        <HandleUpdate />
+        <Button onClick={buttonClick}>Notify-8</Button>
+      </ServiceWorkerProvider>
     </div>
   );
 };

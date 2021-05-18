@@ -82,9 +82,7 @@ self.addEventListener("message", (event) => {
 
 self.addEventListener("notificationclick", function (e) {
   var notification = e.notification;
-  var primaryKey = notification.data.primaryKey;
   var action = e.action;
-  console.log("Closed notification: " + primaryKey);
   if (action === "close") {
     notification.close();
   } else {

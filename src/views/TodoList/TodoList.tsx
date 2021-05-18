@@ -103,10 +103,9 @@ const TodoList: React.FC<TodoListProps> = () => {
           </form>
           <List>
             {todos.map((t) => (
-              <>
+              <React.Fragment key={t.id}>
                 <ListItem
                   onClick={() => onTodoClick(t)}
-                  key={t.id}
                   className={classes.listItem}
                 >
                   <ListItemText
@@ -124,7 +123,7 @@ const TodoList: React.FC<TodoListProps> = () => {
                   </ListItemSecondaryAction>
                 </ListItem>
                 <Divider />
-              </>
+              </React.Fragment>
             ))}
           </List>
         </CardContent>
