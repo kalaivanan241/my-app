@@ -2,6 +2,7 @@ import {
   Card,
   CardContent,
   CardHeader,
+  CircularProgress,
   createStyles,
   Divider,
   IconButton,
@@ -14,12 +15,16 @@ import {
   Theme,
 } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import classnames from "classnames";
 
 import DeleteIcon from "@material-ui/icons/Delete";
 import processNotification from "../../utils/handleNotifications";
+import { db } from "../../configs/db";
+import { TodoType } from "./types";
+import AddIcon from "@material-ui/icons/Add";
+import useFirebaseServices from "./../../hooks/useFirebaseServices";
 
 export interface TodoListProps {}
 
@@ -34,23 +39,38 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       minWidth: 345,
       width: "30%",
-      margin: "10rem auto",
+      margin: "auto",
       background: grey[200],
+      marginTop: "2rem",
+    },
+    listStyle: {
+      maxHeight: "350px",
+      overflow: "scroll",
     },
   })
 );
-
-type TodoType = {
-  id: string;
-  todo: string;
-  isDone: boolean;
-};
 
 const TodoList: React.FC<TodoListProps> = () => {
   const classes = useStyles();
   const [todo, setTodo] = useState<string>("");
   const [todos, setTodos] = useState<TodoType[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const {
+    loading,
+    getData: getTodos,
+    addData,
+    updateData,
+    deleteData,
+  } = useFirebaseServices<TodoType>("todos");
+
+  const getData = async () => {
+    const todosList = await getTodos();
+    setTodos([...todosList]);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const addTodos = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -59,6 +79,7 @@ const TodoList: React.FC<TodoListProps> = () => {
       setError("Todo cannot be blank");
       return;
     }
+    addData({ id: Date.now().toString(), todo: todo, isDone: false });
     setTodos((preValue) => [
       ...preValue,
       { id: Date.now().toString(), todo: todo, isDone: false },
@@ -73,6 +94,7 @@ const TodoList: React.FC<TodoListProps> = () => {
       ...selectedTodo,
       isDone: !selectedTodo.isDone,
     });
+    updateData({ ...selectedTodo, isDone: !selectedTodo.isDone });
     setTodos([...todos]);
   };
 
@@ -80,6 +102,7 @@ const TodoList: React.FC<TodoListProps> = () => {
     const index = todos.findIndex((todo) => selectedTodo.id === todo.id);
     todos.splice(index, 1);
     setTodos([...todos]);
+    deleteData(selectedTodo);
   };
   return (
     <>
@@ -101,31 +124,37 @@ const TodoList: React.FC<TodoListProps> = () => {
               error={!!error}
             />
           </form>
-          <List>
-            {todos.map((t) => (
-              <React.Fragment key={t.id}>
-                <ListItem
-                  onClick={() => onTodoClick(t)}
-                  className={classes.listItem}
-                >
-                  <ListItemText
-                    primary={t.todo}
-                    className={classnames({ [classes.doneTodo]: t.isDone })}
-                  />
-                  <ListItemSecondaryAction>
-                    <IconButton
-                      edge="end"
-                      aria-label="delete"
-                      onClick={() => onDelete(t)}
+
+          {!loading ? (
+            <List className={classes.listStyle}>
+              {todos.length > 0 &&
+                todos.map((t) => (
+                  <React.Fragment key={t.id}>
+                    <ListItem
+                      onClick={() => onTodoClick(t)}
+                      className={classes.listItem}
                     >
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-                <Divider />
-              </React.Fragment>
-            ))}
-          </List>
+                      <ListItemText
+                        primary={t.todo}
+                        className={classnames({ [classes.doneTodo]: t.isDone })}
+                      />
+                      <ListItemSecondaryAction>
+                        <IconButton
+                          edge="end"
+                          aria-label="delete"
+                          onClick={() => onDelete(t)}
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                    <Divider />
+                  </React.Fragment>
+                ))}
+            </List>
+          ) : (
+            <CircularProgress />
+          )}
         </CardContent>
       </Card>
     </>

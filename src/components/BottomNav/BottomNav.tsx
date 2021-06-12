@@ -4,39 +4,86 @@ import {
   Hidden,
   makeStyles,
 } from "@material-ui/core";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+
+import ListAltIcon from "@material-ui/icons/ListAlt";
+import HomeIcon from "@material-ui/icons/Home";
+import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
+
 import React from "react";
 import { grey } from "@material-ui/core/colors";
+import { baseUrl, todoListUrl, savingListUrl } from "../../app/paths";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 500,
     width: "100%",
-    position: "absolute",
     bottom: 0,
+    position: "sticky",
+  },
+  container: {
+    maxWidth: 500,
+    margin: "auto",
+    position: "sticky",
+    bottom: 0,
+  },
+  bottomNav: {
     backgroundColor: grey[200],
   },
 });
 
+type BottomNavOptionType = {
+  path: string;
+  label: string;
+  icon: React.ReactNode;
+};
+
+const bottomNavOptions: BottomNavOptionType[] = [
+  {
+    path: baseUrl,
+    label: "Home",
+    icon: <HomeIcon />,
+  },
+  {
+    path: todoListUrl,
+    label: "Todo",
+    icon: <ListAltIcon />,
+  },
+  {
+    path: savingListUrl,
+    label: "Savings",
+    icon: <AccountBalanceWalletIcon />,
+  },
+];
+
 const BottomNav = () => {
+  const history = useHistory();
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   return (
     <Hidden mdUp>
-      <BottomNavigation
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        showLabels
-        className={classes.root}
-      >
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-      </BottomNavigation>
+      <div className={classes.root}>
+        <div className={classes.container}>
+          <BottomNavigation
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+              history.push(bottomNavOptions[newValue].path);
+            }}
+            className={classes.bottomNav}
+            showLabels
+          >
+            {bottomNavOptions.map((option, index) => {
+              return (
+                <BottomNavigationAction
+                  label={option.label}
+                  icon={option.icon}
+                  key={index}
+                />
+              );
+            })}
+          </BottomNavigation>
+        </div>
+      </div>
     </Hidden>
   );
 };
