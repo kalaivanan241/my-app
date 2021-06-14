@@ -1,2 +1,0 @@
-(this["webpackJsonpmy-personal-pwa"]=this["webpackJsonpmy-personal-pwa"]||[]).push([[8],{246:function(a,e,n){"use strict";n.r(e);var s=n(85),t=(n(0),n(4));e.default=function(){return Object(t.jsx)("div",{children:Object(t.jsx)(s.a,{children:"data"})})}}}]);
-//# sourceMappingURL=8.ecda9637.chunk.js.map
