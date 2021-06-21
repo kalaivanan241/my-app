@@ -20,6 +20,7 @@ const HandleUpdate: React.FC = () => {
   }, [updateAvailable]);
 
   const handleClose = () => {
+    window.location.reload();
     setShowDialog(false);
   };
 

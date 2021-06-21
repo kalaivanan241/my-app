@@ -2,13 +2,13 @@ import Box from "@material-ui/core/Box";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { baseUrl, savingListUrl, todoListUrl } from "./paths";
+import { baseUrl, savingUrl, todoListUrl } from "./paths";
 const TodoListComponent = React.lazy(
   () => import("./../views/TodoList/TodoList")
 );
 const HomeComponent = React.lazy(() => import("./../views/Home/Home"));
 const SavingsComponent = React.lazy(
-  () => import("./../views/SavingsList/SavingsList")
+  () => import("../views/SavingsList/Savings")
 );
 
 const AppRoutes: React.FC = () => {
@@ -18,7 +18,7 @@ const AppRoutes: React.FC = () => {
         <Switch>
           <Route path={baseUrl} component={HomeComponent} exact />
           <Route path={todoListUrl} component={TodoListComponent} />
-          <Route path={savingListUrl} component={SavingsComponent} />
+          <Route path={savingUrl} component={SavingsComponent} />
         </Switch>
       </React.Suspense>
     </Box>

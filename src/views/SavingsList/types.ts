@@ -3,4 +3,6 @@ export type TSavings = {
   amount: number;
   category: string;
   liquidable: number;
+  updatedAt: string;
+  color?: string;
 };

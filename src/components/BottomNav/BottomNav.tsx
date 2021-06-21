@@ -11,7 +11,7 @@ import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
 
 import React from "react";
 import { grey } from "@material-ui/core/colors";
-import { baseUrl, todoListUrl, savingListUrl } from "../../app/paths";
+import { baseUrl, todoListUrl, savingUrl } from "../../app/paths";
 import { useHistory } from "react-router";
 
 const useStyles = makeStyles({
@@ -49,7 +49,7 @@ const bottomNavOptions: BottomNavOptionType[] = [
     icon: <ListAltIcon />,
   },
   {
-    path: savingListUrl,
+    path: savingUrl,
     label: "Savings",
     icon: <AccountBalanceWalletIcon />,
   },
